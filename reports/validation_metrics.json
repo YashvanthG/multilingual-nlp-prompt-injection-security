@@ -1,0 +1,74 @@
+{
+  "dataset": "internal stratified validation (not held-out test)",
+  "rows": 1260,
+  "accuracy": 0.903968253968254,
+  "classification_report": {
+    "benign": {
+      "precision": 0.8823529411764706,
+      "recall": 0.9403669724770642,
+      "f1-score": 0.9104367135455218,
+      "support": 654.0
+    },
+    "injection": {
+      "precision": 0.9307282415630551,
+      "recall": 0.8646864686468647,
+      "f1-score": 0.8964927288280582,
+      "support": 606.0
+    },
+    "accuracy": 0.903968253968254,
+    "macro avg": {
+      "precision": 0.9065405913697628,
+      "recall": 0.9025267205619645,
+      "f1-score": 0.90346472118679,
+      "support": 1260.0
+    },
+    "weighted avg": {
+      "precision": 0.9056191570766852,
+      "recall": 0.903968253968254,
+      "f1-score": 0.903730320895694,
+      "support": 1260.0
+    }
+  },
+  "confusion_matrix_labels_0_1": [
+    [
+      615,
+      39
+    ],
+    [
+      82,
+      524
+    ]
+  ],
+  "roc_auc": 0.9631387450671672,
+  "batch_mean_ms_per_example": 0.051267830158827736,
+  "data_cleaning": {
+    "agent_style_rows_added_to_fit_set": 833,
+    "source_train_rows": 6339,
+    "duplicate_train_rows_removed": 29,
+    "train_test_overlap_rows_removed_from_training": 11,
+    "clean_train_pool_rows": 6299,
+    "fit_train_rows": 5872,
+    "validation_rows": 1260,
+    "held_out_test_rows": 1585,
+    "fit_train_label_counts": {
+      "0": 3068,
+      "1": 2804
+    },
+    "validation_label_counts": {
+      "0": 654,
+      "1": 606
+    },
+    "test_label_counts": {
+      "0": 823,
+      "1": 762
+    },
+    "source_counts": {
+      "multilingual": 5036,
+      "injection-attack-detection": 1263
+    },
+    "test_sources": {
+      "multilingual": 1287,
+      "injection-attack-detection": 298
+    }
+  }
+}

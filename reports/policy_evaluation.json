@@ -1,0 +1,457 @@
+{
+  "before": {
+    "label": "v1 original model",
+    "model": "models/archive/guardrail_tfidf_v1_original.joblib",
+    "model_size_kb": 884.5,
+    "thresholds": {
+      "escalate": 0.42,
+      "block": 0.72
+    },
+    "datasets": {
+      "original_validation": {
+        "classifier_only_policy": {
+          "rows": 1260,
+          "benign": 654,
+          "attack": 606,
+          "benign_allow": 555,
+          "benign_escalate": 95,
+          "benign_block": 4,
+          "attack_allow_missed": 41,
+          "attack_escalate": 257,
+          "attack_block": 308,
+          "false_positive_rate_block": 0.0061,
+          "benign_escalation_rate": 0.1453,
+          "false_negative_rate_missed": 0.0677,
+          "attack_hard_block_rate": 0.5083,
+          "groq_call_share_of_rows": 0.2794,
+          "roc_auc_classifier_only": 0.9628
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 1260,
+          "benign": 654,
+          "attack": 606,
+          "benign_allow": 555,
+          "benign_escalate": 95,
+          "benign_block": 4,
+          "attack_allow_missed": 41,
+          "attack_escalate": 256,
+          "attack_block": 309,
+          "false_positive_rate_block": 0.0061,
+          "benign_escalation_rate": 0.1453,
+          "false_negative_rate_missed": 0.0677,
+          "attack_hard_block_rate": 0.5099,
+          "groq_call_share_of_rows": 0.2786,
+          "roc_auc_classifier_only": 0.9628
+        },
+        "batch_ms_per_row": 0.0358,
+        "non_ascii_share": 0.706
+      },
+      "original_held_out_test": {
+        "classifier_only_policy": {
+          "rows": 1585,
+          "benign": 823,
+          "attack": 762,
+          "benign_allow": 689,
+          "benign_escalate": 129,
+          "benign_block": 5,
+          "attack_allow_missed": 80,
+          "attack_escalate": 301,
+          "attack_block": 381,
+          "false_positive_rate_block": 0.0061,
+          "benign_escalation_rate": 0.1567,
+          "false_negative_rate_missed": 0.105,
+          "attack_hard_block_rate": 0.5,
+          "groq_call_share_of_rows": 0.2713,
+          "roc_auc_classifier_only": 0.9494
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 1585,
+          "benign": 823,
+          "attack": 762,
+          "benign_allow": 689,
+          "benign_escalate": 129,
+          "benign_block": 5,
+          "attack_allow_missed": 80,
+          "attack_escalate": 299,
+          "attack_block": 383,
+          "false_positive_rate_block": 0.0061,
+          "benign_escalation_rate": 0.1567,
+          "false_negative_rate_missed": 0.105,
+          "attack_hard_block_rate": 0.5026,
+          "groq_call_share_of_rows": 0.27,
+          "roc_auc_classifier_only": 0.9494
+        },
+        "batch_ms_per_row": 0.0351,
+        "non_ascii_share": 0.726
+      },
+      "agent_style_held_out_synthetic": {
+        "classifier_only_policy": {
+          "rows": 303,
+          "benign": 152,
+          "attack": 151,
+          "benign_allow": 19,
+          "benign_escalate": 124,
+          "benign_block": 9,
+          "attack_allow_missed": 0,
+          "attack_escalate": 44,
+          "attack_block": 107,
+          "false_positive_rate_block": 0.0592,
+          "benign_escalation_rate": 0.8158,
+          "false_negative_rate_missed": 0.0,
+          "attack_hard_block_rate": 0.7086,
+          "groq_call_share_of_rows": 0.5545,
+          "roc_auc_classifier_only": 0.9283
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 303,
+          "benign": 152,
+          "attack": 151,
+          "benign_allow": 19,
+          "benign_escalate": 124,
+          "benign_block": 9,
+          "attack_allow_missed": 0,
+          "attack_escalate": 5,
+          "attack_block": 146,
+          "false_positive_rate_block": 0.0592,
+          "benign_escalation_rate": 0.8158,
+          "false_negative_rate_missed": 0.0,
+          "attack_hard_block_rate": 0.9669,
+          "groq_call_share_of_rows": 0.4257,
+          "roc_auc_classifier_only": 0.9283
+        },
+        "batch_ms_per_row": 0.0321,
+        "by_language": {
+          "en": {
+            "rows": 299,
+            "benign": 150,
+            "attack": 149,
+            "benign_allow": 19,
+            "benign_escalate": 122,
+            "benign_block": 9,
+            "attack_allow_missed": 0,
+            "attack_escalate": 4,
+            "attack_block": 145,
+            "false_positive_rate_block": 0.06,
+            "benign_escalation_rate": 0.8133,
+            "false_negative_rate_missed": 0.0,
+            "attack_hard_block_rate": 0.9732,
+            "groq_call_share_of_rows": 0.4214,
+            "roc_auc_classifier_only": 0.9327
+          },
+          "es": {
+            "rows": 4,
+            "benign": 2,
+            "attack": 2,
+            "benign_allow": 0,
+            "benign_escalate": 2,
+            "benign_block": 0,
+            "attack_allow_missed": 0,
+            "attack_escalate": 1,
+            "attack_block": 1,
+            "false_positive_rate_block": 0.0,
+            "benign_escalation_rate": 1.0,
+            "false_negative_rate_missed": 0.0,
+            "attack_hard_block_rate": 0.5,
+            "groq_call_share_of_rows": 0.75,
+            "roc_auc_classifier_only": 1.0
+          }
+        },
+        "note": "SYNTHETIC set authored by this project; English plus a handful of Spanish rows. Not evidence of multilingual robustness."
+      }
+    },
+    "per_request_latency_ms": {
+      "samples": 400,
+      "p50": 0.482,
+      "p95": 0.783,
+      "p99": 1.066,
+      "note": "Sequential single-text calls to Guardrail.inspect_request (rules + classifier), CPU only, no Groq."
+    },
+    "peak_rss_mb_after_eval": 234.6,
+    "peak_rss_mb_before_load": 170.7
+  },
+  "after": {
+    "label": "v2 model (+ synthetic agent-style training rows)",
+    "model": "models/guardrail_tfidf.joblib",
+    "model_size_kb": 940.5,
+    "thresholds": {
+      "escalate": 0.42,
+      "block": 0.72
+    },
+    "datasets": {
+      "original_validation": {
+        "classifier_only_policy": {
+          "rows": 1260,
+          "benign": 654,
+          "attack": 606,
+          "benign_allow": 563,
+          "benign_escalate": 88,
+          "benign_block": 3,
+          "attack_allow_missed": 43,
+          "attack_escalate": 258,
+          "attack_block": 305,
+          "false_positive_rate_block": 0.0046,
+          "benign_escalation_rate": 0.1346,
+          "false_negative_rate_missed": 0.071,
+          "attack_hard_block_rate": 0.5033,
+          "groq_call_share_of_rows": 0.2746,
+          "roc_auc_classifier_only": 0.9631
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 1260,
+          "benign": 654,
+          "attack": 606,
+          "benign_allow": 563,
+          "benign_escalate": 88,
+          "benign_block": 3,
+          "attack_allow_missed": 43,
+          "attack_escalate": 257,
+          "attack_block": 306,
+          "false_positive_rate_block": 0.0046,
+          "benign_escalation_rate": 0.1346,
+          "false_negative_rate_missed": 0.071,
+          "attack_hard_block_rate": 0.505,
+          "groq_call_share_of_rows": 0.2738,
+          "roc_auc_classifier_only": 0.9631
+        },
+        "batch_ms_per_row": 0.0579,
+        "non_ascii_share": 0.706
+      },
+      "original_held_out_test": {
+        "classifier_only_policy": {
+          "rows": 1585,
+          "benign": 823,
+          "attack": 762,
+          "benign_allow": 694,
+          "benign_escalate": 125,
+          "benign_block": 4,
+          "attack_allow_missed": 80,
+          "attack_escalate": 303,
+          "attack_block": 379,
+          "false_positive_rate_block": 0.0049,
+          "benign_escalation_rate": 0.1519,
+          "false_negative_rate_missed": 0.105,
+          "attack_hard_block_rate": 0.4974,
+          "groq_call_share_of_rows": 0.27,
+          "roc_auc_classifier_only": 0.9496
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 1585,
+          "benign": 823,
+          "attack": 762,
+          "benign_allow": 694,
+          "benign_escalate": 125,
+          "benign_block": 4,
+          "attack_allow_missed": 80,
+          "attack_escalate": 302,
+          "attack_block": 380,
+          "false_positive_rate_block": 0.0049,
+          "benign_escalation_rate": 0.1519,
+          "false_negative_rate_missed": 0.105,
+          "attack_hard_block_rate": 0.4987,
+          "groq_call_share_of_rows": 0.2694,
+          "roc_auc_classifier_only": 0.9496
+        },
+        "batch_ms_per_row": 0.0546,
+        "non_ascii_share": 0.726
+      },
+      "agent_style_held_out_synthetic": {
+        "classifier_only_policy": {
+          "rows": 303,
+          "benign": 152,
+          "attack": 151,
+          "benign_allow": 95,
+          "benign_escalate": 56,
+          "benign_block": 1,
+          "attack_allow_missed": 0,
+          "attack_escalate": 17,
+          "attack_block": 134,
+          "false_positive_rate_block": 0.0066,
+          "benign_escalation_rate": 0.3684,
+          "false_negative_rate_missed": 0.0,
+          "attack_hard_block_rate": 0.8874,
+          "groq_call_share_of_rows": 0.2409,
+          "roc_auc_classifier_only": 0.9902
+        },
+        "rules_plus_classifier_policy": {
+          "rows": 303,
+          "benign": 152,
+          "attack": 151,
+          "benign_allow": 95,
+          "benign_escalate": 56,
+          "benign_block": 1,
+          "attack_allow_missed": 0,
+          "attack_escalate": 3,
+          "attack_block": 148,
+          "false_positive_rate_block": 0.0066,
+          "benign_escalation_rate": 0.3684,
+          "false_negative_rate_missed": 0.0,
+          "attack_hard_block_rate": 0.9801,
+          "groq_call_share_of_rows": 0.1947,
+          "roc_auc_classifier_only": 0.9902
+        },
+        "batch_ms_per_row": 0.0329,
+        "by_language": {
+          "en": {
+            "rows": 299,
+            "benign": 150,
+            "attack": 149,
+            "benign_allow": 94,
+            "benign_escalate": 55,
+            "benign_block": 1,
+            "attack_allow_missed": 0,
+            "attack_escalate": 2,
+            "attack_block": 147,
+            "false_positive_rate_block": 0.0067,
+            "benign_escalation_rate": 0.3667,
+            "false_negative_rate_missed": 0.0,
+            "attack_hard_block_rate": 0.9866,
+            "groq_call_share_of_rows": 0.1906,
+            "roc_auc_classifier_only": 0.9918
+          },
+          "es": {
+            "rows": 4,
+            "benign": 2,
+            "attack": 2,
+            "benign_allow": 1,
+            "benign_escalate": 1,
+            "benign_block": 0,
+            "attack_allow_missed": 0,
+            "attack_escalate": 1,
+            "attack_block": 1,
+            "false_positive_rate_block": 0.0,
+            "benign_escalation_rate": 0.5,
+            "false_negative_rate_missed": 0.0,
+            "attack_hard_block_rate": 0.5,
+            "groq_call_share_of_rows": 0.5,
+            "roc_auc_classifier_only": 1.0
+          }
+        },
+        "note": "SYNTHETIC set authored by this project; English plus a handful of Spanish rows. Not evidence of multilingual robustness."
+      }
+    },
+    "per_request_latency_ms": {
+      "samples": 400,
+      "p50": 0.49,
+      "p95": 0.776,
+      "p99": 1.115,
+      "note": "Sequential single-text calls to Guardrail.inspect_request (rules + classifier), CPU only, no Groq."
+    },
+    "peak_rss_mb_after_eval": 251.3,
+    "peak_rss_mb_before_load": 234.6
+  },
+  "threshold_sweep_on_validation_after_model": [
+    {
+      "escalate": 0.3,
+      "block": 0.6,
+      "false_positive_rate_block": 0.0168,
+      "benign_escalation_rate": 0.5076,
+      "false_negative_rate_missed": 0.0066,
+      "attack_hard_block_rate": 0.7261,
+      "groq_call_share_of_rows": 0.3921
+    },
+    {
+      "escalate": 0.3,
+      "block": 0.72,
+      "false_positive_rate_block": 0.0046,
+      "benign_escalation_rate": 0.5199,
+      "false_negative_rate_missed": 0.0066,
+      "attack_hard_block_rate": 0.5033,
+      "groq_call_share_of_rows": 0.5056
+    },
+    {
+      "escalate": 0.3,
+      "block": 0.85,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.5245,
+      "false_negative_rate_missed": 0.0066,
+      "attack_hard_block_rate": 0.1997,
+      "groq_call_share_of_rows": 0.654
+    },
+    {
+      "escalate": 0.3,
+      "block": 0.95,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.5245,
+      "false_negative_rate_missed": 0.0066,
+      "attack_hard_block_rate": 0.0033,
+      "groq_call_share_of_rows": 0.7484
+    },
+    {
+      "escalate": 0.42,
+      "block": 0.6,
+      "false_positive_rate_block": 0.0168,
+      "benign_escalation_rate": 0.1223,
+      "false_negative_rate_missed": 0.071,
+      "attack_hard_block_rate": 0.7261,
+      "groq_call_share_of_rows": 0.1611
+    },
+    {
+      "escalate": 0.42,
+      "block": 0.72,
+      "false_positive_rate_block": 0.0046,
+      "benign_escalation_rate": 0.1346,
+      "false_negative_rate_missed": 0.071,
+      "attack_hard_block_rate": 0.5033,
+      "groq_call_share_of_rows": 0.2746
+    },
+    {
+      "escalate": 0.42,
+      "block": 0.85,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.1391,
+      "false_negative_rate_missed": 0.071,
+      "attack_hard_block_rate": 0.1997,
+      "groq_call_share_of_rows": 0.423
+    },
+    {
+      "escalate": 0.42,
+      "block": 0.95,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.1391,
+      "false_negative_rate_missed": 0.071,
+      "attack_hard_block_rate": 0.0033,
+      "groq_call_share_of_rows": 0.5175
+    },
+    {
+      "escalate": 0.5,
+      "block": 0.6,
+      "false_positive_rate_block": 0.0168,
+      "benign_escalation_rate": 0.0428,
+      "false_negative_rate_missed": 0.1353,
+      "attack_hard_block_rate": 0.7261,
+      "groq_call_share_of_rows": 0.0889
+    },
+    {
+      "escalate": 0.5,
+      "block": 0.72,
+      "false_positive_rate_block": 0.0046,
+      "benign_escalation_rate": 0.055,
+      "false_negative_rate_missed": 0.1353,
+      "attack_hard_block_rate": 0.5033,
+      "groq_call_share_of_rows": 0.2024
+    },
+    {
+      "escalate": 0.5,
+      "block": 0.85,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.0596,
+      "false_negative_rate_missed": 0.1353,
+      "attack_hard_block_rate": 0.1997,
+      "groq_call_share_of_rows": 0.3508
+    },
+    {
+      "escalate": 0.5,
+      "block": 0.95,
+      "false_positive_rate_block": 0.0,
+      "benign_escalation_rate": 0.0596,
+      "false_negative_rate_missed": 0.1353,
+      "attack_hard_block_rate": 0.0033,
+      "groq_call_share_of_rows": 0.4452
+    }
+  ],
+  "caveats": [
+    "Synthetic agent-style data is authored by this project and shares an author with the 20 regression scenarios.",
+    "Request-level classification; the sanitizer, Groq and agent are not part of these numbers.",
+    "Groq-call share is the fraction of rows that would be ESCALATEd; live Groq behaviour was not measured here."
+  ]
+}

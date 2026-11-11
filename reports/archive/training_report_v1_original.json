@@ -1,0 +1,184 @@
+{
+  "model": "TF-IDF word n-grams + Logistic Regression",
+  "label_mapping": {
+    "0": "benign/safe",
+    "1": "prompt injection"
+  },
+  "random_state": 42,
+  "validation_fraction": 0.2,
+  "fit_seconds": 0.237,
+  "data_cleaning": {
+    "source_train_rows": 6339,
+    "duplicate_train_rows_removed": 29,
+    "train_test_overlap_rows_removed_from_training": 11,
+    "clean_train_pool_rows": 6299,
+    "fit_train_rows": 5039,
+    "validation_rows": 1260,
+    "held_out_test_rows": 1585,
+    "fit_train_label_counts": {
+      "0": 2614,
+      "1": 2425
+    },
+    "validation_label_counts": {
+      "0": 654,
+      "1": 606
+    },
+    "test_label_counts": {
+      "0": 823,
+      "1": 762
+    },
+    "source_counts": {
+      "multilingual": 5036,
+      "injection-attack-detection": 1263
+    },
+    "test_sources": {
+      "multilingual": 1287,
+      "injection-attack-detection": 298
+    }
+  },
+  "validation": {
+    "dataset": "internal stratified validation",
+    "rows": 1260,
+    "accuracy": 0.9024,
+    "classification_report": {
+      "benign": {
+        "precision": 0.8842257597684515,
+        "recall": 0.9342507645259939,
+        "f1-score": 0.9085501858736059,
+        "support": 654.0
+      },
+      "injection": {
+        "precision": 0.9244288224956063,
+        "recall": 0.8679867986798679,
+        "f1-score": 0.8953191489361703,
+        "support": 606.0
+      },
+      "accuracy": 0.9023809523809524,
+      "macro avg": {
+        "precision": 0.9043272911320289,
+        "recall": 0.9011187816029309,
+        "f1-score": 0.901934667404888,
+        "support": 1260.0
+      },
+      "weighted avg": {
+        "precision": 0.9035615185086546,
+        "recall": 0.9023809523809524,
+        "f1-score": 0.9021866871560773,
+        "support": 1260.0
+      }
+    },
+    "confusion_matrix_labels_0_1": [
+      [
+        611,
+        43
+      ],
+      [
+        80,
+        526
+      ]
+    ],
+    "roc_auc": 0.9628,
+    "mean_inference_ms_per_example": 0.0583
+  },
+  "validation_threshold_analysis": [
+    {
+      "threshold": 0.42,
+      "precision_injection": 0.8509,
+      "recall_injection": 0.9323,
+      "f1_injection": 0.8898,
+      "false_positive_rate": 0.1514,
+      "false_negative_rate": 0.0677,
+      "confusion_matrix_labels_0_1": [
+        [
+          555,
+          99
+        ],
+        [
+          41,
+          565
+        ]
+      ]
+    },
+    {
+      "threshold": 0.5,
+      "precision_injection": 0.9244,
+      "recall_injection": 0.868,
+      "f1_injection": 0.8953,
+      "false_positive_rate": 0.0657,
+      "false_negative_rate": 0.132,
+      "confusion_matrix_labels_0_1": [
+        [
+          611,
+          43
+        ],
+        [
+          80,
+          526
+        ]
+      ]
+    },
+    {
+      "threshold": 0.72,
+      "precision_injection": 0.9872,
+      "recall_injection": 0.5083,
+      "f1_injection": 0.671,
+      "false_positive_rate": 0.0061,
+      "false_negative_rate": 0.4917,
+      "confusion_matrix_labels_0_1": [
+        [
+          650,
+          4
+        ],
+        [
+          298,
+          308
+        ]
+      ]
+    }
+  ],
+  "held_out_test": {
+    "dataset": "provided held-out CSV test",
+    "rows": 1585,
+    "accuracy": 0.8909,
+    "classification_report": {
+      "benign": {
+        "precision": 0.8651685393258427,
+        "recall": 0.9356014580801945,
+        "f1-score": 0.8990075890251021,
+        "support": 823.0
+      },
+      "injection": {
+        "precision": 0.9237410071942446,
+        "recall": 0.84251968503937,
+        "f1-score": 0.8812628689087165,
+        "support": 762.0
+      },
+      "accuracy": 0.8908517350157729,
+      "macro avg": {
+        "precision": 0.8944547732600436,
+        "recall": 0.8890605715597822,
+        "f1-score": 0.8901352289669093,
+        "support": 1585.0
+      },
+      "weighted avg": {
+        "precision": 0.8933276689887589,
+        "recall": 0.8908517350157729,
+        "f1-score": 0.8904766888808209,
+        "support": 1585.0
+      }
+    },
+    "confusion_matrix_labels_0_1": [
+      [
+        770,
+        53
+      ],
+      [
+        120,
+        642
+      ]
+    ],
+    "roc_auc": 0.9494,
+    "mean_inference_ms_per_example": 0.0518
+  },
+  "caution": "The test file has 11 normalized texts overlapping the raw training CSV; those rows were removed from training. Use held-out test results as an initial estimate, not a security guarantee. Tune thresholds on validation only."
+}
