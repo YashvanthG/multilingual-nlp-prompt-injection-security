@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "generated_at_utc": "2026-11-12T10:36:47.034089+00:00",
+  "summary": [
+    {
+      "File": "agent_style_train.csv",
+      "Rows": 833,
+      "Benign (0)": 454,
+      "Injection (1)": 379,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "agent_style_test.csv",
+      "Rows": 303,
+      "Benign (0)": 152,
+      "Injection (1)": 151,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "email_workflow_train.csv",
+      "Rows": 480,
+      "Benign (0)": 240,
+      "Injection (1)": 240,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "email_workflow_test.csv",
+      "Rows": 192,
+      "Benign (0)": 96,
+      "Injection (1)": 96,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "multilingual_train.csv",
+      "Rows": 6339,
+      "Benign (0)": 3292,
+      "Injection (1)": 3047,
+      "Language source": "Detected (langdetect) — refresh"
+    },
+    {
+      "File": "multilingual_test.csv",
+      "Rows": 1585,
+      "Benign (0)": 823,
+      "Injection (1)": 762,
+      "Language source": "Detected (langdetect) — refresh"
+    },
+    {
+      "File": "multilingual_extra_train.csv",
+      "Rows": 288,
+      "Benign (0)": 144,
+      "Injection (1)": 144,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "multilingual_extra_test.csv",
+      "Rows": 144,
+      "Benign (0)": 72,
+      "Injection (1)": 72,
+      "Language source": "CSV column"
+    }
+  ],
+  "language_counts": {
+    "Agent-style · train": {
+      "en": 826,
+      "es": 7
+    },
+    "Agent-style · test": {
+      "en": 299,
+      "es": 4
+    },
+    "Email-workflow · train": {
+      "en": 480
+    },
+    "Email-workflow · test": {
+      "en": 192
+    },
+    "Multilingual-extra (synthetic) · train": {
+      "hi": 16,
+      "hi-Latn": 16,
+      "mr": 16,
+      "bn": 16,
+      "ta": 16,
+      "te": 16,
+      "gu": 16,
+      "pa": 16,
+      "es": 16,
+      "fr": 16,
+      "de": 16,
+      "pt": 16,
+      "it": 16,
+      "ja": 16,
+      "zh": 16,
+      "ko": 16,
+      "th": 16,
+      "vi": 16
+    },
+    "Multilingual-extra (synthetic) · held-out test": {
+      "hi": 8,
+      "hi-Latn": 8,
+      "mr": 8,
+      "bn": 8,
+      "ta": 8,
+      "te": 8,
+      "gu": 8,
+      "pa": 8,
+      "es": 8,
+      "fr": 8,
+      "de": 8,
+      "pt": 8,
+      "it": 8,
+      "ja": 8,
+      "zh": 8,
+      "ko": 8,
+      "th": 8,
+      "vi": 8
+    }
+  },
+  "fingerprint": {
+    "agent_style_train.csv": {
+      "size": 182701,
+      "mtime_ns": 1794479800172687880
+    },
+    "agent_style_test.csv": {
+      "size": 64581,
+      "mtime_ns": 1794479800173545160
+    },
+    "email_workflow_train.csv": {
+      "size": 55436,
+      "mtime_ns": 1794479800173926162
+    },
+    "email_workflow_test.csv": {
+      "size": 22908,
+      "mtime_ns": 1794479800174252707
+    },
+    "multilingual_train.csv": {
+      "size": 1081681,
+      "mtime_ns": 1794479800174619157
+    },
+    "multilingual_test.csv": {
+      "size": 271318,
+      "mtime_ns": 1794479800176046091
+    },
+    "multilingual_extra_train.csv": {
+      "size": 50324,
+      "mtime_ns": 1794479083000000000
+    },
+    "multilingual_extra_test.csv": {
+      "size": 23886,
+      "mtime_ns": 1794479083000000000
+    }
+  },
+  "detector_available": false
+}

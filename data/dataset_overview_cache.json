@@ -1,0 +1,218 @@
+{
+  "version": 1,
+  "generated_at_utc": "2026-11-12T13:25:47.541775+00:00",
+  "summary": [
+    {
+      "File": "agent_style_train.csv",
+      "Rows": 833,
+      "Benign (0)": 454,
+      "Injection (1)": 379,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "agent_style_test.csv",
+      "Rows": 303,
+      "Benign (0)": 152,
+      "Injection (1)": 151,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "email_workflow_train.csv",
+      "Rows": 480,
+      "Benign (0)": 240,
+      "Injection (1)": 240,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "email_workflow_test.csv",
+      "Rows": 192,
+      "Benign (0)": 96,
+      "Injection (1)": 96,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "multilingual_train.csv",
+      "Rows": 6339,
+      "Benign (0)": 3292,
+      "Injection (1)": 3047,
+      "Language source": "Detected (langdetect)"
+    },
+    {
+      "File": "multilingual_test.csv",
+      "Rows": 1585,
+      "Benign (0)": 823,
+      "Injection (1)": 762,
+      "Language source": "Detected (langdetect)"
+    },
+    {
+      "File": "multilingual_extra_train.csv",
+      "Rows": 288,
+      "Benign (0)": 144,
+      "Injection (1)": 144,
+      "Language source": "CSV column"
+    },
+    {
+      "File": "multilingual_extra_test.csv",
+      "Rows": 144,
+      "Benign (0)": 72,
+      "Injection (1)": 72,
+      "Language source": "CSV column"
+    }
+  ],
+  "language_counts": {
+    "Agent-style · train": {
+      "en": 826,
+      "es": 7
+    },
+    "Agent-style · test": {
+      "en": 299,
+      "es": 4
+    },
+    "Email-workflow · train": {
+      "en": 480
+    },
+    "Email-workflow · test": {
+      "en": 192
+    },
+    "Multilingual · train": {
+      "de": 1395,
+      "en": 1168,
+      "pt": 627,
+      "hi": 478,
+      "fr": 434,
+      "ja": 403,
+      "vi": 388,
+      "th": 362,
+      "it": 344,
+      "es": 313,
+      "zh-cn": 227,
+      "ko": 36,
+      "mr": 26,
+      "ca": 22,
+      "af": 17,
+      "nl": 15,
+      "da": 12,
+      "ro": 11,
+      "hr": 9,
+      "id": 8,
+      "unk": 7,
+      "sv": 7,
+      "cy": 6,
+      "no": 5,
+      "et": 4,
+      "tl": 3,
+      "ru": 3,
+      "tr": 3,
+      "ne": 2,
+      "fi": 2,
+      "hu": 1,
+      "sl": 1
+    },
+    "Multilingual · test": {
+      "de": 333,
+      "en": 271,
+      "pt": 164,
+      "hi": 144,
+      "ja": 103,
+      "fr": 98,
+      "th": 95,
+      "it": 93,
+      "vi": 93,
+      "es": 92,
+      "zh-cn": 59,
+      "ko": 8,
+      "id": 5,
+      "ca": 4,
+      "mr": 3,
+      "ro": 3,
+      "af": 3,
+      "et": 2,
+      "sv": 2,
+      "lt": 1,
+      "nl": 1,
+      "no": 1,
+      "ne": 1,
+      "tl": 1,
+      "da": 1,
+      "sl": 1,
+      "cy": 1,
+      "ru": 1,
+      "tr": 1
+    },
+    "Multilingual-extra (synthetic) · train": {
+      "hi": 16,
+      "hi-Latn": 16,
+      "mr": 16,
+      "bn": 16,
+      "ta": 16,
+      "te": 16,
+      "gu": 16,
+      "pa": 16,
+      "es": 16,
+      "fr": 16,
+      "de": 16,
+      "pt": 16,
+      "it": 16,
+      "ja": 16,
+      "zh": 16,
+      "ko": 16,
+      "th": 16,
+      "vi": 16
+    },
+    "Multilingual-extra (synthetic) · held-out test": {
+      "hi": 8,
+      "hi-Latn": 8,
+      "mr": 8,
+      "bn": 8,
+      "ta": 8,
+      "te": 8,
+      "gu": 8,
+      "pa": 8,
+      "es": 8,
+      "fr": 8,
+      "de": 8,
+      "pt": 8,
+      "it": 8,
+      "ja": 8,
+      "zh": 8,
+      "ko": 8,
+      "th": 8,
+      "vi": 8
+    }
+  },
+  "fingerprint": {
+    "agent_style_train.csv": {
+      "size": 182701,
+      "mtime_ns": 1793870939176124200
+    },
+    "agent_style_test.csv": {
+      "size": 64581,
+      "mtime_ns": 1793870939301535600
+    },
+    "email_workflow_train.csv": {
+      "size": 55436,
+      "mtime_ns": 1793870939269051600
+    },
+    "email_workflow_test.csv": {
+      "size": 22908,
+      "mtime_ns": 1793870939285048200
+    },
+    "multilingual_train.csv": {
+      "size": 1081681,
+      "mtime_ns": 1793870939206517400
+    },
+    "multilingual_test.csv": {
+      "size": 271318,
+      "mtime_ns": 1793870939237486300
+    },
+    "multilingual_extra_train.csv": {
+      "size": 50324,
+      "mtime_ns": 1794479345911923900
+    },
+    "multilingual_extra_test.csv": {
+      "size": 23886,
+      "mtime_ns": 1794479345897343500
+    }
+  },
+  "detector_available": true
+}

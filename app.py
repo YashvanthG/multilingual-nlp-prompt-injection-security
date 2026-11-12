@@ -13,6 +13,7 @@ from simulation.agent import DemoAgent
 from simulation.documents import extract_uploaded_document
 from simulation.scenarios import SCENARIOS
 from personal_agent.ui import render_demo_agent_playground
+from dataset_overview import render_dataset_overview
 
 ROOT = Path(__file__).resolve().parent
 load_dotenv(ROOT / ".env", override=False)
@@ -483,7 +484,7 @@ def main():
             st.divider()
             advanced_page = st.radio(
                 "Advanced tools",
-                ["Custom Security Test", "Testing Lab", "Research & Evaluation"],
+                ["Custom Security Test", "Testing Lab", "Research & Evaluation", "Dataset Overview"],
                 label_visibility="collapsed",
             )
             render_security_settings()
@@ -494,6 +495,8 @@ def main():
         run_home(guard, agent, cfg)
     elif advanced_page == "Testing Lab":
         run_testing_lab(guard, agent, cfg)
+    elif advanced_page == "Dataset Overview":
+        render_dataset_overview()
     else:
         run_research(agent)
 

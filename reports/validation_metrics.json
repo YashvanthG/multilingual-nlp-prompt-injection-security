@@ -1,58 +1,60 @@
 {
   "dataset": "internal stratified validation (not held-out test)",
   "rows": 1260,
-  "accuracy": 0.903968253968254,
+  "accuracy": 0.9023809523809524,
   "classification_report": {
     "benign": {
-      "precision": 0.8823529411764706,
-      "recall": 0.9403669724770642,
-      "f1-score": 0.9104367135455218,
+      "precision": 0.8787446504992867,
+      "recall": 0.9418960244648318,
+      "f1-score": 0.9092250922509225,
       "support": 654.0
     },
     "injection": {
-      "precision": 0.9307282415630551,
-      "recall": 0.8646864686468647,
-      "f1-score": 0.8964927288280582,
+      "precision": 0.9320214669051878,
+      "recall": 0.8597359735973598,
+      "f1-score": 0.894420600858369,
       "support": 606.0
     },
-    "accuracy": 0.903968253968254,
+    "accuracy": 0.9023809523809524,
     "macro avg": {
-      "precision": 0.9065405913697628,
-      "recall": 0.9025267205619645,
-      "f1-score": 0.90346472118679,
+      "precision": 0.9053830587022373,
+      "recall": 0.9008159990310958,
+      "f1-score": 0.9018228465546458,
       "support": 1260.0
     },
     "weighted avg": {
-      "precision": 0.9056191570766852,
-      "recall": 0.903968253968254,
-      "f1-score": 0.903730320895694,
+      "precision": 0.9043682621992677,
+      "recall": 0.9023809523809524,
+      "f1-score": 0.9021048368668848,
       "support": 1260.0
     }
   },
   "confusion_matrix_labels_0_1": [
     [
-      615,
-      39
+      616,
+      38
     ],
     [
-      82,
-      524
+      85,
+      521
     ]
   ],
-  "roc_auc": 0.9631387450671672,
-  "batch_mean_ms_per_example": 0.051267830158827736,
+  "roc_auc": 0.9641732521876041,
+  "batch_mean_ms_per_example": 0.07540518492062924,
   "data_cleaning": {
     "agent_style_rows_added_to_fit_set": 833,
+    "multilingual_extra_rows_added_to_fit_set": 288,
+    "email_workflow_rows_added_to_fit_set": 480,
     "source_train_rows": 6339,
     "duplicate_train_rows_removed": 29,
     "train_test_overlap_rows_removed_from_training": 11,
     "clean_train_pool_rows": 6299,
-    "fit_train_rows": 5872,
+    "fit_train_rows": 6640,
     "validation_rows": 1260,
     "held_out_test_rows": 1585,
     "fit_train_label_counts": {
-      "0": 3068,
-      "1": 2804
+      "0": 3452,
+      "1": 3188
     },
     "validation_label_counts": {
       "0": 654,

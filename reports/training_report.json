@@ -6,20 +6,21 @@
   },
   "random_state": 42,
   "validation_fraction": 0.2,
-  "fit_seconds": 0.357,
+  "fit_seconds": 0.386,
   "data_cleaning": {
     "agent_style_rows_added_to_fit_set": 833,
+    "multilingual_extra_rows_added_to_fit_set": 288,
     "email_workflow_rows_added_to_fit_set": 480,
     "source_train_rows": 6339,
     "duplicate_train_rows_removed": 29,
     "train_test_overlap_rows_removed_from_training": 11,
     "clean_train_pool_rows": 6299,
-    "fit_train_rows": 6352,
+    "fit_train_rows": 6640,
     "validation_rows": 1260,
     "held_out_test_rows": 1585,
     "fit_train_label_counts": {
-      "0": 3308,
-      "1": 3044
+      "0": 3452,
+      "1": 3188
     },
     "validation_label_counts": {
       "0": 654,
@@ -41,77 +42,77 @@
   "validation": {
     "dataset": "internal stratified validation",
     "rows": 1260,
-    "accuracy": 0.9032,
+    "accuracy": 0.9024,
     "classification_report": {
       "benign": {
-        "precision": 0.8789173789173789,
-        "recall": 0.9434250764525994,
-        "f1-score": 0.9100294985250738,
+        "precision": 0.8787446504992867,
+        "recall": 0.9418960244648318,
+        "f1-score": 0.9092250922509225,
         "support": 654.0
       },
       "injection": {
-        "precision": 0.9336917562724014,
+        "precision": 0.9320214669051878,
         "recall": 0.8597359735973598,
-        "f1-score": 0.8951890034364262,
+        "f1-score": 0.894420600858369,
         "support": 606.0
       },
-      "accuracy": 0.9031746031746032,
+      "accuracy": 0.9023809523809524,
       "macro avg": {
-        "precision": 0.9063045675948902,
-        "recall": 0.9015805250249795,
-        "f1-score": 0.90260925098075,
+        "precision": 0.9053830587022373,
+        "recall": 0.9008159990310958,
+        "f1-score": 0.9018228465546458,
         "support": 1260.0
       },
       "weighted avg": {
-        "precision": 0.9052612461214611,
-        "recall": 0.9031746031746032,
-        "f1-score": 0.9028919270776766,
+        "precision": 0.9043682621992677,
+        "recall": 0.9023809523809524,
+        "f1-score": 0.9021048368668848,
         "support": 1260.0
       }
     },
     "confusion_matrix_labels_0_1": [
       [
-        617,
-        37
+        616,
+        38
       ],
       [
         85,
         521
       ]
     ],
-    "roc_auc": 0.9633,
-    "batch_mean_ms_per_example": 0.051
+    "roc_auc": 0.9642,
+    "batch_mean_ms_per_example": 0.0581
   },
   "validation_threshold_analysis": [
     {
       "threshold": 0.42,
-      "precision_injection": 0.8622,
-      "recall_injection": 0.929,
-      "f1_injection": 0.8944,
-      "false_positive_rate": 0.1376,
-      "false_negative_rate": 0.071,
+      "precision_injection": 0.8664,
+      "recall_injection": 0.9307,
+      "f1_injection": 0.8974,
+      "false_positive_rate": 0.133,
+      "false_negative_rate": 0.0693,
       "confusion_matrix_labels_0_1": [
         [
-          564,
-          90
+          567,
+          87
         ],
         [
-          43,
-          563
+          42,
+          564
         ]
       ]
     },
     {
       "threshold": 0.5,
-      "precision_injection": 0.9337,
+      "precision_injection": 0.932,
       "recall_injection": 0.8597,
-      "f1_injection": 0.8952,
-      "false_positive_rate": 0.0566,
+      "f1_injection": 0.8944,
+      "false_positive_rate": 0.0581,
       "false_negative_rate": 0.1403,
       "confusion_matrix_labels_0_1": [
         [
-          617,
-          37
+          616,
+          38
         ],
         [
           85,
@@ -121,19 +122,19 @@
     },
     {
       "threshold": 0.72,
-      "precision_injection": 0.9901,
-      "recall_injection": 0.4934,
-      "f1_injection": 0.6586,
-      "false_positive_rate": 0.0046,
-      "false_negative_rate": 0.5066,
+      "precision_injection": 0.9869,
+      "recall_injection": 0.4967,
+      "f1_injection": 0.6608,
+      "false_positive_rate": 0.0061,
+      "false_negative_rate": 0.5033,
       "confusion_matrix_labels_0_1": [
         [
-          651,
-          3
+          650,
+          4
         ],
         [
-          307,
-          299
+          305,
+          301
         ]
       ]
     }
@@ -141,90 +142,90 @@
   "held_out_test": {
     "dataset": "provided held-out CSV test",
     "rows": 1585,
-    "accuracy": 0.8883,
+    "accuracy": 0.8877,
     "classification_report": {
       "benign": {
-        "precision": 0.8604910714285714,
-        "recall": 0.93681652490887,
-        "f1-score": 0.8970331588132635,
+        "precision": 0.8603351955307262,
+        "recall": 0.9356014580801945,
+        "f1-score": 0.8963911525029103,
         "support": 823.0
       },
       "injection": {
-        "precision": 0.9245283018867925,
+        "precision": 0.9231884057971015,
         "recall": 0.8359580052493438,
-        "f1-score": 0.8780151619572708,
+        "f1-score": 0.8774104683195593,
         "support": 762.0
       },
-      "accuracy": 0.8883280757097792,
+      "accuracy": 0.8876971608832808,
       "macro avg": {
-        "precision": 0.8925096866576819,
-        "recall": 0.8863872650791069,
-        "f1-score": 0.8875241603852672,
+        "precision": 0.8917618006639139,
+        "recall": 0.8857797316647691,
+        "f1-score": 0.8869008104112348,
         "support": 1585.0
       },
       "weighted avg": {
-        "precision": 0.8912774244942903,
-        "recall": 0.8883280757097792,
-        "f1-score": 0.887890121838963,
+        "precision": 0.8905523224852865,
+        "recall": 0.8876971608832808,
+        "f1-score": 0.8872660538608198,
         "support": 1585.0
       }
     },
     "confusion_matrix_labels_0_1": [
       [
-        771,
-        52
+        770,
+        53
       ],
       [
         125,
         637
       ]
     ],
-    "roc_auc": 0.9501,
-    "batch_mean_ms_per_example": 0.0585
+    "roc_auc": 0.9502,
+    "batch_mean_ms_per_example": 0.0596
   },
   "agent_style_held_out_test": {
     "dataset": "synthetic agent-style held-out (never fitted on)",
     "rows": 303,
-    "accuracy": 0.8713,
+    "accuracy": 0.8779,
     "classification_report": {
       "benign": {
-        "precision": 1.0,
-        "recall": 0.743421052631579,
-        "f1-score": 0.8528301886792453,
+        "precision": 0.9914529914529915,
+        "recall": 0.7631578947368421,
+        "f1-score": 0.862453531598513,
         "support": 152.0
       },
       "injection": {
-        "precision": 0.7947368421052632,
-        "recall": 1.0,
-        "f1-score": 0.8856304985337243,
+        "precision": 0.8064516129032258,
+        "recall": 0.9933774834437086,
+        "f1-score": 0.8902077151335311,
         "support": 151.0
       },
-      "accuracy": 0.8712871287128713,
+      "accuracy": 0.8778877887788779,
       "macro avg": {
-        "precision": 0.8973684210526316,
-        "recall": 0.8717105263157895,
-        "f1-score": 0.8692303436064848,
+        "precision": 0.8989523021781086,
+        "recall": 0.8782676890902754,
+        "f1-score": 0.8763306233660221,
         "support": 303.0
       },
       "weighted avg": {
-        "precision": 0.8977071391349662,
-        "recall": 0.8712871287128713,
-        "f1-score": 0.8691762176826326,
+        "precision": 0.8992575849809961,
+        "recall": 0.8778877887788779,
+        "f1-score": 0.876284824383291,
         "support": 303.0
       }
     },
     "confusion_matrix_labels_0_1": [
       [
-        113,
-        39
+        116,
+        36
       ],
       [
-        0,
-        151
+        1,
+        150
       ]
     ],
-    "roc_auc": 0.9927,
-    "batch_mean_ms_per_example": 0.0478
+    "roc_auc": 0.9914,
+    "batch_mean_ms_per_example": 0.0557
   },
   "email_workflow_held_out_test": {
     "dataset": "synthetic email-workflow held-out (never fitted on)",
@@ -268,7 +269,51 @@
       ]
     ],
     "roc_auc": 1.0,
-    "batch_mean_ms_per_example": 0.0282
+    "batch_mean_ms_per_example": 0.0318
+  },
+  "multilingual_extra_held_out_test": {
+    "dataset": "synthetic multilingual (18 languages) held-out (never fitted on)",
+    "rows": 144,
+    "accuracy": 0.7222,
+    "classification_report": {
+      "benign": {
+        "precision": 0.66,
+        "recall": 0.9166666666666666,
+        "f1-score": 0.7674418604651163,
+        "support": 72.0
+      },
+      "injection": {
+        "precision": 0.8636363636363636,
+        "recall": 0.5277777777777778,
+        "f1-score": 0.6551724137931034,
+        "support": 72.0
+      },
+      "accuracy": 0.7222222222222222,
+      "macro avg": {
+        "precision": 0.7618181818181818,
+        "recall": 0.7222222222222222,
+        "f1-score": 0.7113071371291099,
+        "support": 144.0
+      },
+      "weighted avg": {
+        "precision": 0.7618181818181818,
+        "recall": 0.7222222222222222,
+        "f1-score": 0.7113071371291099,
+        "support": 144.0
+      }
+    },
+    "confusion_matrix_labels_0_1": [
+      [
+        66,
+        6
+      ],
+      [
+        34,
+        38
+      ]
+    ],
+    "roc_auc": 0.857,
+    "batch_mean_ms_per_example": 0.0501
   },
   "metrics_note": "All metrics here use the 0.5 argmax operating point. The DEPLOYED policy uses thresholds 0.42/0.72 plus deterministic rules; see reports/policy_evaluation.json (evaluate_policy.py).",
   "caution": "The provided multilingual test file has 11 normalized texts overlapping the raw training CSV; those rows were removed from training. Agent-style and email-workflow held-out files are never fitted on. Use all held-out results as initial estimates, not a security guarantee. Tune thresholds on validation only."

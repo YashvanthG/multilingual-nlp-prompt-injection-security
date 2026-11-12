@@ -19,7 +19,7 @@ streamlit run app.py                             # Demo Agent opens first; Advan
 ```
 Optional live Groq (may incur charges; never run by default): `Copy-Item .env.example .env`, put your key in `.env`, then
 `python guardrails_test_suite.py --mode live`. `.env` is not shipped; keep real keys out of source files and out of any ZIP.
-The trained model is included; `python train.py` retrains it. The training pipeline fits only on the raw training CSVs plus synthetic training rows; held-out CSVs are evaluation-only. Run `python data/build_email_workflow.py` before `python train.py` to regenerate the additional email-workflow examples.
+The trained model is included; `python train.py` retrains it. The training pipeline fits only on the raw training CSVs plus synthetic training rows; held-out CSVs are evaluation-only. Run `python data/build_email_workflow.py` before `python train.py` to regenerate the additional email-workflow examples, and `python data/build_multilingual_extra.py` to regenerate the 18-language multilingual-extra examples.
 
 ## Simple Demo Agent
 
@@ -80,7 +80,7 @@ Final regression results (synthetic scenarios, **not** a security accuracy): off
 * **How to read the regression pass counts.** In offline mode T12 (quoted e-mail thread) and T17 (benign Spanish message) are counted as passes only because ESCALATE is an accepted outcome in their expectations: the documents were *held for review*, not processed. T09 and T20 test the tool-output boundary with injected fixture outputs (the classifier stage of the request is skipped for those two; deterministic rules still run). All scenarios are synthetic.
 * **Four regression failures remain, and were not tuned away.** T06, T14, T15 (offline only): the classifier scores short date requests such as "Tell me the meeting date." at ≈ 0.448, just above the 0.42 threshold, so offline mode fails closed with ESCALATE; the mocked-Hybrid runs pass, a live Groq run was not performed. Diagnosis: the score comes from generic phrasing features ("tell", "me the") with an injection prior, and the word "meeting" never occurs in the training data. T11 (both modes): a benign security-awareness e-mail scores 0.87 and is BLOCKed; the feature "security" appears in 61 training rows, 98 % of them injection. A classifier BLOCK is final by design. A real fix needs new labelled benign data and an untouched evaluation; this was not done.
 * After retraining, 36.8 % of the synthetic agent-style benign held-out rows (15.2 % of the original test benign rows) are still ESCALATEd. Operating this system without Groq therefore means frequent fail-closed ESCALATEs for benign requests.
-* **Multilingual robustness is not established.** There are 4 Spanish held-out rows (7 in training); the rules include a small illustrative Spanish set; date extraction knows English, numeric, ISO and Spanish month names only. The `source=multilingual` field is metadata, not a language label.
+* **Multilingual robustness is only partly probed.** The original multilingual CSVs have no language labels (`source=multilingual` is metadata). The synthetic `multilingual_extra_*` files (18 languages incl. 8 Indian, exact labels, templated wording, Indian-language rows not yet native-reviewed) show uneven transfer: at the deployed thresholds about a quarter of their held-out attacks are still ALLOWed, and Japanese/Chinese (no word spacing) are missed almost entirely by the word n-gram vectorizer (see `reports/RESULTS_SUMMARY.md` section E). The rules include only a small illustrative Spanish set; date extraction knows English, numeric, ISO and Spanish month names only.
 * Rules and classifier are heuristics; paraphrased or novel attacks may bypass them (10.5 % of original-test attacks were ALLOWed at the deployed thresholds). Summaries are extractive. Action alignment is heuristic.
 * **Not verified:** live Groq behaviour; a fresh Windows installation; interaction in a real browser (the settings panel was tested with Streamlit's headless `AppTest`, and the server was started and its health endpoint checked, but no browser was driven).
 * `evaluate_agent.py`'s six-scenario benchmark is illustrative; its "unguarded" mode ignores documents, so it understates unguarded attack success.
@@ -94,7 +94,7 @@ train.py  evaluate.py           training; classifier + policy + agent-benchmark 
 evaluate_classifier.py  evaluate_policy.py  evaluate_agent.py  data_utils.py
 guardrails/  config.py  rules.py  sanitizer.py  classifier.py  tool_security.py  output_security.py  llm_checker.py
 simulation/  agent.py  extraction.py  tools.py  documents.py  scenarios.py
-data/raw/                       original CSVs + synthetic agent_style_{train,test}.csv and email_workflow_{train,test}.csv; generator scripts recreate synthetic sets
+data/raw/                       original CSVs + synthetic agent_style_, email_workflow_ and multilingual_extra_{train,test}.csv; generator scripts recreate synthetic sets
 models/guardrail_tfidf.joblib   current model;  models/archive/  original v1 model (for before/after)
 reports/                        RESULTS_SUMMARY.md, policy_evaluation.{json,md}, training_report.json, validation_metrics.json,
                                 agent_benchmark.json, baseline_before/ (regression run on the unmodified code), archive/ (original v1 reports)

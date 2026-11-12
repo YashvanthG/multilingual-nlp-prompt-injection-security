@@ -33,6 +33,8 @@ AGENT_TRAIN = RAW / "agent_style_train.csv"
 AGENT_TEST = RAW / "agent_style_test.csv"
 EMAIL_WORKFLOW_TRAIN = RAW / "email_workflow_train.csv"
 EMAIL_WORKFLOW_TEST = RAW / "email_workflow_test.csv"
+MULTILINGUAL_EXTRA_TRAIN = RAW / "multilingual_extra_train.csv"
+MULTILINGUAL_EXTRA_TEST = RAW / "multilingual_extra_test.csv"
 
 
 def load_agent_style(path):
@@ -42,6 +44,11 @@ def load_agent_style(path):
     for col in ("language", "kind", "pool"):
         out[col] = frame.loc[:, col].astype(str).values[: len(out)] if col in frame.columns else "unknown"
     return out
+
+
+def load_multilingual_extra(path):
+    """Synthetic multilingual rows with an exact per-row `language` code (see data/build_multilingual_extra.py)."""
+    return load_agent_style(path)
 
 
 def prepare_training_data(validation_size=0.2, random_state=42, include_agent_style=True):
@@ -76,8 +83,15 @@ def prepare_training_data(validation_size=0.2, random_state=42, include_agent_st
         email = email[~email["text_key"].isin(test_keys | set(validation["text_key"]))]
         email_added = int(len(email))
         train = pd.concat([train, email[["text", "label", "source", "text_key", "split"]]], ignore_index=True)
+    ml_extra_added = 0
+    if include_agent_style and MULTILINGUAL_EXTRA_TRAIN.exists():
+        extra = _read_csv(MULTILINGUAL_EXTRA_TRAIN, "multilingual_extra")
+        extra = extra[~extra["text_key"].isin(test_keys | set(validation["text_key"]))]
+        ml_extra_added = int(len(extra))
+        train = pd.concat([train, extra[["text", "label", "source", "text_key", "split"]]], ignore_index=True)
     stats = {
         "agent_style_rows_added_to_fit_set": agent_added,
+        "multilingual_extra_rows_added_to_fit_set": ml_extra_added,
         "email_workflow_rows_added_to_fit_set": email_added,
         "source_train_rows": int(before),
         "duplicate_train_rows_removed": int(duplicate_removed),

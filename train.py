@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, precision_score, recall_score, f1_score
 from guardrails.config import DEFAULTS
-from data_utils import AGENT_TEST, EMAIL_WORKFLOW_TEST, ROOT, load_agent_style, prepare_training_data, _read_csv
+from data_utils import AGENT_TEST, EMAIL_WORKFLOW_TEST, MULTILINGUAL_EXTRA_TEST, ROOT, load_agent_style, load_multilingual_extra, prepare_training_data, _read_csv
 
 def evaluate(model, frame, name):
     start = time.perf_counter()
@@ -88,6 +88,7 @@ def main():
         "held_out_test": evaluate(model, test, "provided held-out CSV test"),
         "agent_style_held_out_test": evaluate(model, load_agent_style(AGENT_TEST), "synthetic agent-style held-out (never fitted on)"),
         "email_workflow_held_out_test": evaluate(model, _read_csv(EMAIL_WORKFLOW_TEST, "email_workflow_test"), "synthetic email-workflow held-out (never fitted on)"),
+        "multilingual_extra_held_out_test": evaluate(model, load_multilingual_extra(MULTILINGUAL_EXTRA_TEST), "synthetic multilingual (18 languages) held-out (never fitted on)"),
         "metrics_note": f"All metrics here use the 0.5 argmax operating point. The DEPLOYED policy uses thresholds {DEFAULTS.escalate_threshold}/{DEFAULTS.block_threshold} plus deterministic rules; see reports/policy_evaluation.json (evaluate_policy.py).",
         "caution": "The provided multilingual test file has 11 normalized texts overlapping the raw training CSV; those rows were removed from training. Agent-style and email-workflow held-out files are never fitted on. Use all held-out results as initial estimates, not a security guarantee. Tune thresholds on validation only.",
     }

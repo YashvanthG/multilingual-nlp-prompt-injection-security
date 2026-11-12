@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.metrics import roc_auc_score
 
-from data_utils import AGENT_TEST, ROOT, load_agent_style, prepare_training_data
+from data_utils import AGENT_TEST, MULTILINGUAL_EXTRA_TEST, ROOT, load_agent_style, load_multilingual_extra, prepare_training_data
 from guardrails import rules
 from guardrails.classifier import Guardrail
 from guardrails.config import DEFAULTS
@@ -51,7 +51,9 @@ def evaluate_model(label, path, esc=DEFAULTS.escalate_threshold, blk=DEFAULTS.bl
     guard = Guardrail(path)
     train, val, test, _ = prepare_training_data(include_agent_style=False)
     agent = load_agent_style(AGENT_TEST)
-    datasets = {"original_validation": val, "original_held_out_test": test, "agent_style_held_out_synthetic": agent}
+    ml_extra = load_multilingual_extra(MULTILINGUAL_EXTRA_TEST)
+    datasets = {"original_validation": val, "original_held_out_test": test, "agent_style_held_out_synthetic": agent,
+                "multilingual_extra_held_out_synthetic": ml_extra}
     result = {"label": label, "model": str(Path(path).relative_to(ROOT)), "model_size_kb": round(Path(path).stat().st_size / 1024, 1),
               "thresholds": {"escalate": esc, "block": blk}, "datasets": {}}
     idx = list(guard.model.classes_).index(1)
@@ -61,10 +63,12 @@ def evaluate_model(label, path, esc=DEFAULTS.escalate_threshold, blk=DEFAULTS.bl
         batch_ms = (time.perf_counter() - t0) * 1000 / len(frame)
         entry = {"classifier_only_policy": summarize(frame, probs, esc, blk, False),
                  "rules_plus_classifier_policy": summarize(frame, probs, esc, blk, True), "batch_ms_per_row": round(batch_ms, 4)}
-        if name.startswith("agent"):
+        if name.startswith(("agent", "multilingual_extra")):
             entry["by_language"] = {lang: summarize(frame[frame["language"] == lang], probs[(frame["language"] == lang).values], esc, blk, True)
                                     for lang in sorted(frame["language"].unique())}
-            entry["note"] = "SYNTHETIC set authored by this project; English plus a handful of Spanish rows. Not evidence of multilingual robustness."
+            entry["note"] = ("SYNTHETIC set authored by this project; 18 languages x 8 held-out phrasings, templated. Shows cross-language transfer on this phrasing family only, not real-world multilingual robustness."
+                             if name.startswith("multilingual_extra") else
+                             "SYNTHETIC set authored by this project; English plus a handful of Spanish rows. Not evidence of multilingual robustness.")
         else:
             entry["non_ascii_share"] = round(float(frame["text"].map(NON_ASCII).mean()), 3)
         result["datasets"][name] = entry
@@ -98,7 +102,7 @@ def sweep(path):
 def markdown(report):
     lines = ["# Deployed-policy evaluation (before vs after retraining)", "",
              f"Policy: deterministic rules -> classifier thresholds {DEFAULTS.escalate_threshold} (ESCALATE) / {DEFAULTS.block_threshold} (BLOCK). Request-level text classification only.", ""]
-    for ds in ("original_validation", "original_held_out_test", "agent_style_held_out_synthetic"):
+    for ds in ("original_validation", "original_held_out_test", "agent_style_held_out_synthetic", "multilingual_extra_held_out_synthetic"):
         lines += [f"## {ds}", "", "| model | policy | rows | benign ALLOW/ESC/BLOCK | attacks MISSED / ESC / BLOCK | FP(block) | benign esc. | FN(missed) | Groq-call share |", "|---|---|---:|---|---|---:|---:|---:|---:|"]
         for tag in ("before", "after"):
             for pol in ("classifier_only_policy", "rules_plus_classifier_policy"):
@@ -117,9 +121,10 @@ def main(argv=None):
     ap.add_argument("--after", default=str(ROOT / "models" / "guardrail_tfidf.joblib"))
     ap.add_argument("--out", default=str(ROOT / "reports" / "policy_evaluation.json"))
     args = ap.parse_args(argv)
-    report = {"before": evaluate_model("v1 original model", args.before), "after": evaluate_model("v2 model (+ synthetic agent-style training rows)", args.after),
+    report = {"before": evaluate_model("v1 original model", args.before), "after": evaluate_model("v3 model (+ synthetic agent-style, email-workflow and multilingual-extra training rows)", args.after),
               "threshold_sweep_on_validation_after_model": sweep(args.after),
               "caveats": ["Synthetic agent-style data is authored by this project and shares an author with the 20 regression scenarios.",
+                          "Synthetic multilingual-extra data is templated (same 8+4 semantic patterns in every language) and Indian-language rows await native-speaker review.",
                           "Request-level classification; the sanitizer, Groq and agent are not part of these numbers.",
                           "Groq-call share is the fraction of rows that would be ESCALATEd; live Groq behaviour was not measured here."]}
     Path(args.out).write_text(json.dumps(report, indent=2), encoding="utf-8")

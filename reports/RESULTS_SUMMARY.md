@@ -49,3 +49,52 @@ These are synthetic scenario outcomes, not a measure of real-world security; 19/
 
 ## G. Other limitations
 See README "Known limitations": heuristic rules/classifier, 10.5% of original-test attacks ALLOWed at the deployed thresholds, extractive summaries, no browser-level UI test.
+
+
+## E. Update: synthetic multilingual-extra data (v3 model)
+Added `data/raw/multilingual_extra_{train,test}.csv` (built by `data/build_multilingual_extra.py`): 18 languages, exact per-row `language` labels,
+8 injection + 8 benign train phrasings and 4 + 4 **different** held-out phrasings per language (288 train / 144 held-out rows, balanced). Train rows are fitted on;
+held-out rows are never fitted on and share no text with train or with the original CSVs. Sections A-D above describe the **v2** model as shipped before this update;
+`validation_metrics.json`, `training_report.json` and `policy_evaluation.json` now describe **v3** (v2 files are kept under `models/archive/` and `reports/archive/`).
+
+| model | dataset | rows | accuracy | precision | recall | F1 | ROC-AUC | confusion `[[TN,FP],[FN,TP]]` |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| v2 | original validation | 1260 | 90.32% | 93.37% | 85.97% | 89.52% | 0.9633 | `[[617, 37], [85, 521]]` |
+| v3 | original validation | 1260 | 90.24% | 93.20% | 85.97% | 89.44% | 0.9642 | `[[616, 38], [85, 521]]` |
+| v2 | original held-out test | 1585 | 88.83% | 92.45% | 83.60% | 87.80% | 0.9501 | `[[771, 52], [125, 637]]` |
+| v3 | original held-out test | 1585 | 88.77% | 92.32% | 83.60% | 87.74% | 0.9502 | `[[770, 53], [125, 637]]` |
+| v2 | synthetic agent-style held-out | 303 | 87.13% | 79.47% | 100.00% | 88.56% | 0.9927 | `[[113, 39], [0, 151]]` |
+| v3 | synthetic agent-style held-out | 303 | 87.79% | 80.65% | 99.34% | 89.02% | 0.9914 | `[[116, 36], [1, 150]]` |
+| v2 | synthetic multilingual-extra held-out | 144 | 67.36% | 83.78% | 43.06% | 56.88% | 0.7216 | `[[66, 6], [41, 31]]` |
+| v3 | synthetic multilingual-extra held-out | 144 | 72.22% | 86.36% | 52.78% | 65.52% | 0.8570 | `[[66, 6], [34, 38]]` |
+
+Deployed policy (rules + 0.42/0.72 thresholds) on the multilingual-extra held-out set: attacks missed 45.8% (v1) -> 26.4% (v3);
+benign blocked 0.0%; benign escalated 16.7%; rows escalated 35.4%. Per language (v3, 4 attacks and 4 benign each):
+
+| language | attacks missed | escalated | blocked | benign escalated/blocked |
+|---|---:|---:|---:|---:|
+| Chinese | 4/4 | 0/4 | 0/4 | 0/4 |
+| Japanese | 4/4 | 0/4 | 0/4 | 0/4 |
+| Marathi | 3/4 | 0/4 | 1/4 | 0/4 |
+| Punjabi | 2/4 | 2/4 | 0/4 | 0/4 |
+| Thai | 2/4 | 1/4 | 1/4 | 1/4 |
+| Gujarati | 1/4 | 2/4 | 1/4 | 0/4 |
+| Hindi | 1/4 | 2/4 | 1/4 | 0/4 |
+| Korean | 1/4 | 3/4 | 0/4 | 0/4 |
+| Telugu | 1/4 | 2/4 | 1/4 | 1/4 |
+| Bengali | 0/4 | 4/4 | 0/4 | 0/4 |
+| French | 0/4 | 4/4 | 0/4 | 2/4 |
+| German | 0/4 | 1/4 | 3/4 | 1/4 |
+| Hinglish | 0/4 | 3/4 | 1/4 | 0/4 |
+| Italian | 0/4 | 3/4 | 1/4 | 2/4 |
+| Portuguese | 0/4 | 3/4 | 1/4 | 1/4 |
+| Spanish | 0/4 | 2/4 | 2/4 | 1/4 |
+| Tamil | 0/4 | 4/4 | 0/4 | 0/4 |
+| Vietnamese | 0/4 | 3/4 | 1/4 | 3/4 |
+
+How to read this:
+- Section E numbers were recomputed directly from the model files; v2 rows can differ from section A by about 0.1 point because the originally shipped `validation_metrics.json` and `training_report.json` already differed slightly for v2 (90.40% vs 90.32% validation accuracy).
+- The set is synthetic and templated (same 8+4 semantic patterns in every language, authored by this project); it probes cross-language transfer on one phrasing family and is **not** evidence of real-world multilingual robustness.
+- Japanese and Chinese (no word spacing), and to a lesser degree Marathi, Punjabi and Thai, are the weak spots. The shipped vectorizer uses word n-grams, which cannot split unsegmented scripts and fragments Indic words at combining marks. A quick uncommitted experiment with character n-grams raised recall on ja/zh/mr/th from 18.8% to 50.0% and original held-out-test accuracy from 88.8% to 92.2%; this is a candidate next step, not part of the shipped model.
+- Original validation/test and the regression suite are essentially unchanged (the 20-scenario outcomes are identical, including the known T11 failure). Per-language samples are tiny (4 attacks); do not read single-language percentages as precise.
+- Indian-language rows (Hindi, Hinglish, Marathi, Bengali, Tamil, Telugu, Gujarati, Punjabi) were written without native-speaker review and should be checked before being cited.
